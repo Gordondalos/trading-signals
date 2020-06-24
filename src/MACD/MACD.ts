@@ -1,6 +1,6 @@
 import {EMA} from '../EMA/EMA';
 import Big, {BigSource} from 'big.js';
-import {DEMA, NotEnoughDataError} from '..';
+import {DEMA} from '..';
 
 export type MACDConfig = {
   longInterval: number;
@@ -72,7 +72,12 @@ export class MACD {
 
   getResult(): MACDResult {
     if (!this.result) {
-      throw new NotEnoughDataError();
+      // throw new NotEnoughDataError();
+      this.result = {
+        diff: new Big(0),
+        macd: new Big(0),
+        signal: new Big(0),
+      };
     }
 
     return this.result;

@@ -1,5 +1,4 @@
 import Big, {BigSource} from 'big.js';
-import {NotEnoughDataError} from '../error';
 
 export abstract class MovingAverage {
   protected result: Big | undefined;
@@ -12,7 +11,8 @@ export abstract class MovingAverage {
 
   getResult(): Big {
     if (!this.result) {
-      throw new NotEnoughDataError();
+      // throw new NotEnoughDataError();
+      this.result = new Big(0);
     }
     return this.result;
   }
